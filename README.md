@@ -1,10 +1,12 @@
-# ⚽ Escuela de Fútbol Colacho
+# ⚽ Escuela de Fútbol Gol de Oro
 
-Plataforma web para una escuela de fútbol infantil de Villa del Río: una **página pública** para atraer nuevas familias y una **zona privada con 4 paneles** (administrador, profesor, padre y jugador), cada uno con sus propias funciones.
+Plataforma web para una escuela de fútbol infantil: una **página pública** para atraer nuevas familias y una **zona privada con 4 paneles** (administrador, profesor, padre y jugador), cada uno con sus propias funciones.
 
-🔗 **Demo en vivo:** [escuela-ten-omega.vercel.app](https://escuela-ten-omega.vercel.app)
+🔗 **Demo en vivo:** [TU-LINK.vercel.app](https://TU-LINK.vercel.app)
 
-> 🧪 **Proyecto en desarrollo.** El frontend está completo; el backend (API + base de datos) es la siguiente etapa. Mientras tanto, los datos se guardan en el navegador (`localStorage`) y el inicio de sesión usa usuarios de prueba.
+> ⚠️ **Proyecto de portafolio.** "Gol de Oro" es una escuela **ficticia**: los nombres, contactos y datos son de ejemplo.
+>
+> 🧪 **En desarrollo.** El frontend está completo; el backend (API + base de datos) es la siguiente etapa. Mientras tanto, los datos se guardan en el navegador (`localStorage`) y el inicio de sesión usa usuarios de prueba.
 
 ![Página de inicio](docs/capturas/inicio-escritorio.jpg)
 
@@ -12,14 +14,14 @@ Plataforma web para una escuela de fútbol infantil de Villa del Río: una **pá
 
 ## 🔑 Pruébalo
 
-Entra a [/login](https://escuela-ten-omega.vercel.app/login) y usa los botones de **usuarios de prueba**, o escribe:
+Entra a [/login](https://TU-LINK.vercel.app/login) y usa los botones de **usuarios de prueba**, o escribe:
 
 | Rol | Correo | Contraseña |
 |---|---|---|
-| Administrador | `admin@colacho.com` | `admin123` |
-| Profesor | `profe@colacho.com` | `profe123` |
-| Padre | `padre@colacho.com` | `padre123` |
-| Jugador | `jugador@colacho.com` | `jugador123` |
+| Administrador | `admin@goldeoro.com` | `admin123` |
+| Profesor | `profe@goldeoro.com` | `profe123` |
+| Padre | `padre@goldeoro.com` | `padre123` |
+| Jugador | `jugador@goldeoro.com` | `jugador123` |
 
 💡 **Prueba esto:** entra como **profesor**, arma una alineación en *Posiciones* y programa un partido en *Calendario*. Luego cierra sesión, entra como **padre** y verás esos mismos cambios, con su hijo destacado con ⭐ en la cancha.
 
@@ -112,8 +114,8 @@ src/
 Necesitas [Node.js](https://nodejs.org) 22 o superior.
 
 ```bash
-git clone https://github.com/carlosgomez2654/escuela.git
-cd escuela
+git clone https://github.com/carlosgomez2654/escuela-futbol-gol-de-oro.git
+cd escuela-futbol-gol-de-oro
 npm install
 npm run dev
 ```
@@ -135,11 +137,15 @@ Abre `http://localhost:5173` en el navegador.
 - [ ] Base de datos **PostgreSQL** (usuarios, jugadores, categorías, pagos, eventos)
 - [ ] Inicio de sesión real con contraseñas cifradas y tokens
 - [ ] Conectar el frontend con la API
-- [ ] Fotos reales de la escuela en el carrusel
+
+---
+
+## 📷 Créditos
+
+Fotografías de [Unsplash](https://unsplash.com), usadas bajo la [Licencia de Unsplash](https://unsplash.com/license).
 
 ---
 
 ## 👤 Autor
 
 **Carlos Gómez** · [GitHub](https://github.com/carlosgomez2654)
-
