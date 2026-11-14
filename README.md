@@ -2,7 +2,7 @@
 
 Plataforma web para una escuela de fútbol infantil: una **página pública** para atraer nuevas familias y una **zona privada con 4 paneles** (administrador, profesor, padre y jugador), cada uno con sus propias funciones.
 
-🔗 **Demo en vivo:** [TU-LINK.vercel.app](https://escuela-futbol-gol-de-oro.vercel.app)
+🔗 **Demo en vivo:** [escuela-futbol-gol-de-oro.vercel.app](https://escuela-futbol-gol-de-oro.vercel.app)
 
 > ⚠️ **Proyecto de portafolio.** "Gol de Oro" es una escuela **ficticia**: los nombres, contactos y datos son de ejemplo.
 >

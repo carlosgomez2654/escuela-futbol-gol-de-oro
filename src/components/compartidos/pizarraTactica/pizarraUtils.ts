@@ -1,10 +1,6 @@
 // Tipos, datos y funciones de ayuda de la pizarra táctica (sin JSX).
 
-export interface Jugador {
-  id: number;
-  nombre: string;
-  posicion: string;
-}
+
 
 // Una posición dentro de la cancha (en porcentaje, para que se adapte al tamaño)
 export interface PosicionCancha {
@@ -59,22 +55,7 @@ export const FORMACIONES: Record<Formacion, { nombre: string; posiciones: Posici
 };
 
 // Todos los jugadores del equipo (cuando tengas backend, vendrán de la base de datos)
-export const JUGADORES_EQUIPO: Jugador[] = [
-  { id: 1, nombre: 'Andrés C.', posicion: 'Arquero' },
-  { id: 2, nombre: 'Carlos M.', posicion: 'Defensa' },
-  { id: 3, nombre: 'Felipe R.', posicion: 'Defensa' },
-  { id: 4, nombre: 'Daniel P.', posicion: 'Defensa' },
-  { id: 5, nombre: 'Esteban L.', posicion: 'Defensa' },
-  { id: 6, nombre: 'Juanito R.', posicion: 'Mediocampista' },
-  { id: 7, nombre: 'Mateo S.', posicion: 'Mediocampista' },
-  { id: 8, nombre: 'Samuel T.', posicion: 'Mediocampista' },
-  { id: 9, nombre: 'David V.', posicion: 'Mediocampista' },
-  { id: 10, nombre: 'Santiago G.', posicion: 'Delantero' },
-  { id: 11, nombre: 'Lucas B.', posicion: 'Delantero' },
-  { id: 12, nombre: 'Alejandro Torres', posicion: 'Mediocampista' },
-  { id: 13, nombre: 'Mateo Pérez', posicion: 'Delantero' },
-  { id: 14, nombre: 'Samuel Rojas', posicion: 'Arquero' },
-];
+
 
 // La alineación que se muestra si el profesor todavía no ha guardado ninguna
 const ALINEACION_INICIAL: Alineacion = {
@@ -82,9 +63,7 @@ const ALINEACION_INICIAL: Alineacion = {
   asignaciones: { 0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11 },
 };
 
-export function buscarJugador(id: number) {
-  return JUGADORES_EQUIPO.find((jugador) => jugador.id === id);
-}
+
 
 // ----- localStorage -----
 // (Cuando tengas backend, solo cambias estas dos funciones por llamadas a la API)

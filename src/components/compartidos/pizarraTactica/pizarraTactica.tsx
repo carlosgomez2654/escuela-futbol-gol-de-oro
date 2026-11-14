@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Cancha } from './Cancha';
+import { buscarJugador, jugadoresDeCategoria } from '../../../datos/jugadores';
 import {
   FORMACIONES,
-  JUGADORES_EQUIPO,
-  buscarJugador,
   cargarAlineacion,
   guardarAlineacion,
   type Alineacion,
@@ -22,7 +21,8 @@ export function PizarraTactica({ editable = false, jugadorDestacadoId }: Pizarra
 
   // Jugadores que NO están en la cancha
   const idsEnCancha = Object.values(alineacion.asignaciones);
-  const banca = JUGADORES_EQUIPO.filter((jugador) => !idsEnCancha.includes(jugador.id));
+    // Por ahora, solo la Sub-12 (id 3). En el paso 7.3 la categoría la elegirá el profesor.
+  const banca = jugadoresDeCategoria(3).filter((jugador) => !idsEnCancha.includes(jugador.id));
   const jugadorSeleccionado = idSeleccionado !== null ? buscarJugador(idSeleccionado) : undefined;
 
   // Guarda en el estado Y en localStorage al mismo tiempo

@@ -13,10 +13,10 @@ export interface Usuario {
 const AdminUsuarios = () => {
     // 1. Datos de ejemplo para los usuarios
     const [usuarios, setUsuarios] = useState<Usuario[]>([
-        { id: 1, nombre: 'Carlos Gómez', email: 'carlos@example.com', whatsapp: '3001234567', rol: 'Padre', detallesExtra: 'Hijo: Mateo Gómez (Sub-8)' },
-        { id: 2, nombre: 'Prof. Alberto', email: 'alberto@example.com', whatsapp: '3101112233', rol: 'Profesor', detallesExtra: 'Categoría Sub-6' },
-        { id: 3, nombre: 'Mateo Gómez', email: 'mateo@example.com', whatsapp: '3001234567', rol: 'Jugador', detallesExtra: 'Edad: 7 años - Sub-8' },
-        { id: 4, nombre: 'Jhon', email: 'jhon@example.com', whatsapp: '3209998877', rol: 'Profesor', detallesExtra: 'Categoría Sub-10' },
+        { id: 1, nombre: 'Carlos Gómez', email: 'carlos@example.com', whatsapp: '3001234567', rol: 'Padre', detallesExtra: 'Hijo: Santiago G. (Sub-12)' },
+        { id: 2, nombre: 'Andrés Rojas', email: 'andres@example.com', whatsapp: '3101112233', rol: 'Profesor', detallesExtra: 'Categorías Sub-12 y Sub-15' },
+        { id: 3, nombre: 'Santiago G.', email: 'santiago@example.com', whatsapp: '3001234567', rol: 'Jugador', detallesExtra: 'Edad: 11 años - Sub-12' },
+        { id: 4, nombre: 'Laura Martínez', email: 'laura@example.com', whatsapp: '3209998877', rol: 'Profesor', detallesExtra: 'Categoría Sub-10' },
     ]);
 
     // Estado para el menú desplegable del filtro de roles

@@ -1,4 +1,5 @@
-import { FORMACIONES, buscarJugador, type Alineacion } from './pizarraUtils';
+import { buscarJugador } from '../../../datos/jugadores';
+import { FORMACIONES, type Alineacion } from './pizarraUtils';
 
 interface CanchaProps {
   alineacion: Alineacion;

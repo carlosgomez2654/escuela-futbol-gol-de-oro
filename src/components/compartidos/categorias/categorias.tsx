@@ -1,15 +1,9 @@
 import { useState } from 'react';
+import { CATEGORIAS, buscarCategoria } from '../../../datos/categorias';
+import { buscarProfesor } from '../../../datos/profesores';
+import { JUGADORES } from '../../../datos/jugadores';
 
-// Estructura de la Categoría
-export interface Categoria {
-    id: number;
-    nombre: string;
-    edadMin: number;
-    edadMax: number;
-    profesor: string;
-}
-
-// Estructura del Jugador/Alumno
+// Estructura del Jugador/Alumno, como la usa esta pantalla
 export interface Alumno {
     id: number;
     nombreNino: string;
@@ -18,23 +12,28 @@ export interface Alumno {
     whatsapp: string;
     eps: string;
     tipoSangre: string;
-    categoria: string; // Debe coincidir con el nombre de la categoría
+    categoria: string; // Nombre de la categoría (ej: "Sub-12")
 }
 
-const Categorias = () => {
-    // 1. Categorías de ejemplo
-    const [categorias] = useState<Categoria[]>([
-        { id: 1, nombre: 'Sub-6', edadMin: 4, edadMax: 6, profesor: 'Prof. Alberto' },
-        { id: 2, nombre: 'Sub-8', edadMin: 7, edadMax: 8, profesor: 'Carlos Gómez' },
-        { id: 3, nombre: 'Sub-10', edadMin: 9, edadMax: 11, profesor: 'Jhon' }
-    ]);
+// Convierte los jugadores de la fuente de datos al formato de esta pantalla
+const alumnosIniciales: Alumno[] = JUGADORES.map((jugador) => ({
+    id: jugador.id,
+    nombreNino: jugador.nombre,
+    edad: jugador.edad,
+    nombrePadre: jugador.acudiente,
+    whatsapp: jugador.whatsapp,
+    eps: jugador.eps,
+    tipoSangre: jugador.tipoSangre,
+    categoria: buscarCategoria(jugador.categoriaId)?.nombre ?? '',
+}));
 
-    // 2. Alumnos con estado reactivo
-    const [alumnos, setAlumnos] = useState<Alumno[]>([
-        { id: 1, nombreNino: 'Mateo Gómez', edad: 7, nombrePadre: 'Carlos Gómez', whatsapp: '3001234567', eps: 'Sanitas', tipoSangre: 'O+', categoria: 'Sub-8' },
-        { id: 2, nombreNino: 'Lucas Pérez', edad: 8, nombrePadre: 'Andrés Pérez', whatsapp: '3109876543', eps: 'Sura', tipoSangre: 'A+', categoria: 'Sub-8' },
-        { id: 3, nombreNino: 'Sofía Ruiz', edad: 5, nombrePadre: 'María Ruiz', whatsapp: '3201112233', eps: 'Compensar', tipoSangre: 'B+', categoria: 'Sub-6' },
-    ]);
+const Categorias = () => {
+    // 1. Las categorías vienen de la fuente de datos compartida
+    const categorias = CATEGORIAS;
+
+    // 2. Alumnos con estado reactivo (empiezan con los jugadores de la escuela)
+    const [alumnos, setAlumnos] = useState<Alumno[]>(alumnosIniciales);
+
 
     // Estado para la categoría seleccionada en el filtro superior
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('Sub-8');
@@ -98,7 +97,7 @@ const Categorias = () => {
                         <div>
                             <span className="text-muted text-uppercase small fw-bold">Profesor a cargo de la categoría {infoCategoriaActual.nombre}</span>
                             <h1 className="display-5 fw-bold text-primary mb-0 mt-1">
-                                👨‍🏫 {infoCategoriaActual.profesor}
+                                👨‍🏫 {buscarProfesor(infoCategoriaActual.profesorId)?.nombre}
                             </h1>
                         </div>
                         <div className="mt-3 mt-md-0">
