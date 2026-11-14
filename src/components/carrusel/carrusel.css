@@ -1,0 +1,82 @@
+.carousel {
+  position: relative;
+}
+
+/* Todas las fotos del mismo alto, recortadas sin deformarse */
+.carousel-item img {
+  height: 520px;
+  object-fit: cover;
+}
+
+/* Capa oscura encima de las fotos para que el texto blanco se lea */
+.carousel-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(11, 28, 63, 0.35), rgba(11, 28, 63, 0.7));
+  pointer-events: none; /* deja pasar los clics */
+}
+
+/* Título y botón, centrados encima de las fotos */
+.carrusel-contenido {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  padding: 0 4rem;
+  pointer-events: none; /* los clics pasan a las flechas... */
+}
+
+.carrusel-contenido .btn {
+  pointer-events: auto; /* ...pero el botón sí se puede presionar */
+}
+
+.carrusel-subtitulo {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.carrusel-titulo {
+  color: #ffffff; /* Sin esto, los h1 toman el color oscuro de index.css */
+  font-size: 4rem;
+  font-weight: 800;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.carrusel-lema {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+/* Ajustes para celular */
+@media (max-width: 576px) {
+  .carousel-item img {
+    height: 340px;
+  }
+
+  .carrusel-contenido {
+    padding: 0 3rem;
+  }
+
+  .carrusel-titulo {
+    font-size: 2.4rem;
+  }
+
+  .carrusel-lema {
+    font-size: 1rem;
+  }
+
+  .carrusel-contenido .btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.25rem;
+  }
+}

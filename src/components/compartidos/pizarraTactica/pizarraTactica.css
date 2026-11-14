@@ -1,0 +1,127 @@
+/* ===== Cancha ===== */
+
+.soccer-field {
+  position: relative; /* Las líneas y las fichas se ubican respecto a la cancha */
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  height: 450px;
+  background-image: linear-gradient(to bottom, #2e8b57, #228b22);
+}
+
+.center-line {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.center-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+}
+
+.penalty-box-top,
+.penalty-box-bottom {
+  position: absolute;
+  left: 30%;
+  width: 40%;
+  height: 80px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.penalty-box-top {
+  top: 0;
+  border-top: none;
+}
+
+.penalty-box-bottom {
+  bottom: 0;
+  border-bottom: none;
+}
+
+/* ===== Fichas de los jugadores ===== */
+
+.player-token {
+  position: absolute;
+  z-index: 10;
+  /* Quitamos el estilo por defecto de los botones */
+  background: none;
+  border: 0;
+  padding: 0;
+  /* Centra la ficha sobre su punto (top/left) */
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+}
+
+/* Solo el profesor ve el cursor de mano y el efecto al pasar el mouse */
+.player-token.editable {
+  cursor: pointer;
+}
+
+.player-token.editable:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.player-token:disabled {
+  cursor: default;
+}
+
+.badge-player {
+  width: 38px;
+  height: 38px;
+  font-size: 0.75rem;
+  border: 2px solid #ffc107;
+}
+
+.nombre-jugador {
+  white-space: nowrap;
+}
+
+/* ===== Jugador destacado (pulso) ===== */
+
+.badge-player.destacado {
+  border-color: #dc3545;
+  animation: pulso 2s infinite;
+}
+
+@keyframes pulso {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(255, 193, 7, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+  }
+}
+
+/* ===== Celular ===== */
+
+@media (max-width: 576px) {
+  .soccer-field {
+    height: 400px;
+  }
+
+  .badge-player {
+    width: 30px;
+    height: 30px;
+    font-size: 0.6rem;
+  }
+
+  .nombre-jugador {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.35rem !important;
+  }
+}

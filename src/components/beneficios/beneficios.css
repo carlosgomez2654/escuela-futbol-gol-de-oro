@@ -1,0 +1,59 @@
+.beneficios-container {
+  width: 100%;
+  font-family: inherit;
+}
+
+.beneficios-titulo-principal {
+  background-color: #0d6efd; /* Azul principal */
+  color: #ffffff;
+  text-align: center;
+  padding: 40px 20px;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Bloques individuales */
+.beneficio-bloque {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.beneficio-bloque h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.beneficio-bloque p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Variante: Fondo Blanco */
+.bloque-blanco {
+  background-color: #ffffff;
+  color: #0d6efd; /* Texto azul para destacar sobre blanco */
+  height: auto;
+}
+
+.bloque-blanco p {
+  color: #333333; /* Texto gris oscuro para mejor lectura en el párrafo */
+  height: auto;
+}
+
+/* Variante: Fondo Azul */
+.bloque-azul {
+  background-color: #0d6efd; /* Azul */
+  color: #ffffff;
+  height: auto;
+}
+
+.bloque-azul p {
+  color: #f8f9fa;
+  height: auto;
+}

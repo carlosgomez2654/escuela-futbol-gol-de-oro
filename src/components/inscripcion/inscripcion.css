@@ -1,0 +1,47 @@
+/* Quitamos cualquier límite de ancho y hacemos que ocupe toda la pantalla */
+.inscripcion-wrapper {
+    width: 100vw;
+    min-height: calc(100vh - 70px); /* Ajusta según la altura de tu barra de navegación */
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: stretch;
+}
+
+/* La fila ocupa el 100% sin márgenes de Bootstrap */
+.inscripcion-wrapper .row {
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+/* Columna izquierda: se estira para ocupar toda su mitad */
+.inscripcion-info-side {
+    background-color: #0b1c3f; /* Azul institucional */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem !important;
+}
+
+/* Contenedor del formulario a la derecha sin restricciones */
+.inscripcion-wrapper .form-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #ffffff;
+    padding: 4rem;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    height: 100%;
+}
+
+
+
+@media (max-width: 576px) {
+    .inscripcion-info-side {
+        padding: 3rem 1.5rem !important;
+    }
+
+    .inscripcion-wrapper .form-container {
+        padding: 2.5rem 1.5rem;
+    }
+}

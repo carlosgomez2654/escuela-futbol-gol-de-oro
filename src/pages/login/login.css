@@ -1,0 +1,21 @@
+/* Centra la tarjeta en la pantalla */
+.login-pagina {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* Más angosta que el formulario de inscripción */
+.login-tarjeta {
+  width: 100%;
+  max-width: 420px;
+  margin: 0;
+}
+
+/* Caja de usuarios de prueba */
+.login-demo {
+  border-top: 1px dashed #ced4da;
+  padding-top: 1rem;
+}

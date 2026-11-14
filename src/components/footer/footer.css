@@ -1,0 +1,51 @@
+.footer {
+  background-color: #0b1c3f;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 3rem;
+}
+
+.footer-marca {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.footer h5 {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.footer ul li {
+  margin-bottom: 0.6rem;
+}
+
+.footer a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover {
+  color: #4dabf7;
+}
+
+.footer-mapa iframe {
+  width: 100%;
+  height: 250px;
+  border: 0;
+  border-radius: 8px;
+}
+
+.footer-copy {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2.5rem;
+  padding: 1.25rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}

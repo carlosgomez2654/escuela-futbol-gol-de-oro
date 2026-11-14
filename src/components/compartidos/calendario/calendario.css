@@ -1,0 +1,50 @@
+/* Rejilla de 7 columnas iguales (una por día de la semana) */
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.calendario-dia {
+  min-height: 110px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button.calendario-dia:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}
+
+.calendario-evento-texto {
+  font-size: 11px;
+}
+
+/* Fondo oscuro detrás de los modales */
+.calendario-modal-fondo {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* En celular las casillas son angostas: el evento se muestra como una barrita de color */
+@media (max-width: 576px) {
+  .calendario-grid {
+    gap: 3px;
+  }
+
+  .calendario-encabezado {
+    font-size: 0.75rem;
+  }
+
+  .calendario-dia {
+    min-height: 60px;
+    padding: 4px !important;
+  }
+
+  .calendario-evento {
+    height: 8px;
+    padding: 0 !important;
+  }
+
+  .calendario-evento-texto {
+    display: none;
+  }
+}

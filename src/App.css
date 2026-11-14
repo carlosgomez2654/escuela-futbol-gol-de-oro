@@ -1,0 +1,33 @@
+/* Aseguramos que la página y el fondo cubran toda la pantalla */
+html, body, #root {
+    width: 100%;
+    max-width: 100% !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Forzamos a que cualquier contenedor clásico de Bootstrap se expanda a lo ancho */
+.container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* El main maneja la imagen de fondo para toda la sección principal */
+.main-container {
+    background-image: url('./assets/fondo-principal.jpg');
+    background-size: cover; 
+    background-position: center 75%;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+/* Quitamos el padding lateral para que el carrusel toque los bordes si así lo deseas */
+.carrusel-wrapper {
+    width: 100%;
+    padding: 2rem 0; 
+}

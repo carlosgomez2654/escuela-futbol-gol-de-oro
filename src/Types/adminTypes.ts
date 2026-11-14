@@ -1,0 +1,1 @@
+export type AdminSection = 'home' | 'inscripciones' | 'categorias' | 'configuracion' | 'usuarios' | 'pagos';
