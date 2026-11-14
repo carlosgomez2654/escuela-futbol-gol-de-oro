@@ -15,9 +15,6 @@ const MenuProfesores = ({ onSelectSection }: MenuProfesoresProps) => {
         <li className="menu-item" onClick={() => onSelectSection('categorias')}>
           Categorías
         </li>
-        <li className="menu-item" onClick={() => onSelectSection('lugar')}>
-          Lugar
-        </li>
         <li className="menu-item" onClick={() => onSelectSection('pizarraTactica')}>
           Posiciones
         </li>

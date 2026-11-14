@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { CATEGORIAS, ESTILO_POR_TIPO, EVENTO_VACIO, type EventoDia, type TipoEvento } from './calendarioUtils';
+import { ESTILO_POR_TIPO, EVENTO_VACIO, type EventoDia, type TipoEvento } from './calendarioUtils';
 
 interface ModalEditarEventoProps {
   titulo: string;
@@ -67,28 +67,27 @@ export function ModalEditarEvento({ titulo, eventoInicial, onGuardar, onBorrar, 
                 </div>
 
                 <div className="col-md-6 mb-3">
-                  <label htmlFor="evento-categoria" className="form-label fw-semibold">Categoría:</label>
-                  <select
-                    id="evento-categoria"
-                    className="form-select"
-                    value={formulario.categoria}
-                    onChange={(e) => cambiarCampo('categoria', e.target.value)}
-                  >
-                    {CATEGORIAS.map((categoria) => (
-                      <option key={categoria} value={categoria}>{categoria}</option>
-                    ))}
-                  </select>
+                  <label htmlFor="evento-hora" className="form-label fw-semibold">Hora:</label>
+                  <input
+                    id="evento-hora"
+                    type="time"
+                    className="form-control"
+                    value={formulario.hora}
+                    onChange={(e) => cambiarCampo('hora', e.target.value)}
+                  />
                 </div>
               </div>
 
               <div className="mb-3">
-                <label htmlFor="evento-hora" className="form-label fw-semibold">Hora:</label>
+                <label htmlFor="evento-lugar" className="form-label fw-semibold">Lugar:</label>
                 <input
-                  id="evento-hora"
-                  type="time"
+                  id="evento-lugar"
+                  type="text"
                   className="form-control"
-                  value={formulario.hora}
-                  onChange={(e) => cambiarCampo('hora', e.target.value)}
+                  placeholder="Ej. Cancha principal o Estadio El Campín"
+                  value={formulario.lugar}
+                  onChange={(e) => cambiarCampo('lugar', e.target.value)}
+                  required
                 />
               </div>
             </div>

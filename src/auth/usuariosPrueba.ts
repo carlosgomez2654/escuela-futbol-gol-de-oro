@@ -20,7 +20,7 @@ interface UsuarioConPassword extends Usuario {
 
 export const USUARIOS_PRUEBA: UsuarioConPassword[] = [
   { id: 1, nombre: 'Administrador', email: 'admin@goldeoro.com', password: 'admin123', rol: 'admin' },
-    { id: 2, nombre: 'Andrés Rojas', email: 'profe@goldeoro.com', password: 'profe123', rol: 'profesor', profesorId: 1 },
+  { id: 2, nombre: 'Andrés Rojas', email: 'profe@goldeoro.com', password: 'profe123', rol: 'profesor', profesorId: 1 },
   { id: 3, nombre: 'Carlos Gómez', email: 'padre@goldeoro.com', password: 'padre123', rol: 'padre', jugadorId: 10 },
   { id: 4, nombre: 'Santiago G.', email: 'jugador@goldeoro.com', password: 'jugador123', rol: 'jugador', jugadorId: 10 },
 ];

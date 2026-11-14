@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import MenuProfesores from './components/menuProfesores/menuProfesores';
 import Categorias from '../compartidos/categorias/categorias';
-import { Lugar } from './components/lugar/lugar';
 import { PizarraTactica } from '../compartidos/pizarraTactica/pizarraTactica';  // Ajusta la ruta según dónde hayas guardado el archivo
 import { Calendario } from '../compartidos/calendario/calendario';
 import './profesoresDashboard.css';
@@ -18,7 +17,6 @@ const ProfesoresDashboard = () => {
       {/* Área de contenido principal */}
       <main className="dashboard-main">
         {activeSection === 'categorias' && <Categorias />}
-        {activeSection === 'lugar' && <Lugar />}
         {activeSection === 'pizarraTactica' && <PizarraTactica editable={true} /> }
         {activeSection === 'calendario' && <Calendario editable={true} />}
       </main>

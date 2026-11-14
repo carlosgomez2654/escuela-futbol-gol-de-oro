@@ -35,8 +35,8 @@ export function ModalDetalleEvento({ titulo, evento, onCerrar }: ModalDetalleEve
                   </div>
                   <div className="col-6">
                     <div className="p-2 bg-light rounded border">
-                      <small className="text-muted d-block fw-semibold">Categoría</small>
-                      <span className="fw-bold text-dark fs-5">🏃 {evento.categoria}</span>
+                      <small className="text-muted d-block fw-semibold">Lugar</small>
+                      <span className="fw-bold text-dark fs-5">📍 {evento.lugar}</span>
                     </div>
                   </div>
                 </div>

@@ -10,6 +10,8 @@ import {
   type EventoDia,
   type EventosDelMes,
 } from './calendarioUtils';
+import { useCategoriasDelUsuario } from '../../../auth/useCategoriasDelUsuario';
+import { SelectorCategoria } from '../selectorCategoria/SelectorCategoria';
 import { ModalDetalleEvento } from './ModalDetalleEvento';
 import { ModalEditarEvento } from './ModalEditarEvento';
 import './calendario.css';
@@ -19,10 +21,14 @@ interface CalendarioProps {
 }
 
 export function Calendario({ editable = false }: CalendarioProps) {
+  // Profesor: sus categorías. Padre y jugador: la del niño.
+  const categorias = useCategoriasDelUsuario();
+  const [categoriaId, setCategoriaId] = useState(() => categorias[0]?.id ?? 0);
+
   const hoy = new Date();
   const [ano, setAno] = useState(hoy.getFullYear());
   const [mes, setMes] = useState(hoy.getMonth());
-  const [eventos, setEventos] = useState<EventosDelMes>(() => cargarEventos(ano, mes));
+  const [eventos, setEventos] = useState<EventosDelMes>(() => cargarEventos(categoriaId, ano, mes));
   const [diaSeleccionado, setDiaSeleccionado] = useState<string | null>(null);
 
   // cantidad: -1 = mes anterior, +1 = mes siguiente
@@ -34,7 +40,13 @@ export function Calendario({ editable = false }: CalendarioProps) {
 
     setAno(nuevoAno);
     setMes(nuevoMes);
-    setEventos(cargarEventos(nuevoAno, nuevoMes));
+    setEventos(cargarEventos(categoriaId, nuevoAno, nuevoMes));
+  };
+
+  // Al cambiar de categoría se cargan los eventos de ESA categoría (mismo mes)
+  const cambiarCategoria = (nuevaCategoriaId: number) => {
+    setCategoriaId(nuevaCategoriaId);
+    setEventos(cargarEventos(nuevaCategoriaId, ano, mes));
   };
 
   const cerrarModal = () => setDiaSeleccionado(null);
@@ -42,7 +54,7 @@ export function Calendario({ editable = false }: CalendarioProps) {
   // Guarda en el estado Y en localStorage al mismo tiempo
   const actualizarEventos = (nuevosEventos: EventosDelMes) => {
     setEventos(nuevosEventos);
-    guardarEventos(ano, mes, nuevosEventos);
+    guardarEventos(categoriaId, ano, mes, nuevosEventos);
     cerrarModal();
   };
 
@@ -60,7 +72,13 @@ export function Calendario({ editable = false }: CalendarioProps) {
 
   const espaciosVacios = Array.from({ length: obtenerPrimerDiaSemana(ano, mes) }, (_, i) => i);
   const diasDelMes = Array.from({ length: obtenerDiasDelMes(ano, mes) }, (_, i) => i + 1);
-  const tituloModal = `Día ${diaSeleccionado} de ${NOMBRES_MESES[mes]} de ${ano}`;
+  const nombreCategoria = categorias.find((c) => c.id === categoriaId)?.nombre;
+  const tituloModal = `Día ${diaSeleccionado} de ${NOMBRES_MESES[mes]} · ${nombreCategoria}`;
+
+  // Va después de todos los hooks (la regla de los hooks)
+  if (categorias.length === 0) {
+    return <p className="text-center text-muted my-5">No tienes categorías asignadas.</p>;
+  }
 
   return (
     <div className="container my-4">
@@ -88,6 +106,11 @@ export function Calendario({ editable = false }: CalendarioProps) {
             Siguiente ▶
           </button>
         </div>
+      </div>
+
+      {/* Selector de categoría (o el nombre, si solo hay una) */}
+      <div className="mb-3">
+        <SelectorCategoria categorias={categorias} categoriaId={categoriaId} onCambiar={cambiarCategoria} />
       </div>
 
       <div className={`alert ${editable ? 'alert-success' : 'alert-info'} py-2 text-center small shadow-sm`}>
