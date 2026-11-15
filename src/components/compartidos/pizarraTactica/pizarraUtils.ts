@@ -1,5 +1,7 @@
 // Tipos, datos y funciones de ayuda de la pizarra táctica (sin JSX).
 
+import { jugadoresDeCategoria } from '../../../datos/jugadores';
+
 
 
 // Una posición dentro de la cancha (en porcentaje, para que se adapte al tamaño)
@@ -54,27 +56,30 @@ export const FORMACIONES: Record<Formacion, { nombre: string; posiciones: Posici
   },
 };
 
-// Todos los jugadores del equipo (cuando tengas backend, vendrán de la base de datos)
+// La alineación de una categoría cuando el profesor todavía no ha guardado ninguna:
+// los primeros 11 jugadores de esa categoría, en orden.
+function alineacionInicial(categoriaId: number): Alineacion {
+  const asignaciones: Asignaciones = {};
+  jugadoresDeCategoria(categoriaId)
+    .slice(0, 11)
+    .forEach((jugador, indice) => {
+      asignaciones[indice] = jugador.id;
+    });
 
-
-// La alineación que se muestra si el profesor todavía no ha guardado ninguna
-const ALINEACION_INICIAL: Alineacion = {
-  formacion: '4-4-2',
-  asignaciones: { 0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11 },
-};
-
-
+  return { formacion: '4-4-2', asignaciones };
+}
 
 // ----- localStorage -----
 // (Cuando tengas backend, solo cambias estas dos funciones por llamadas a la API)
 
-const CLAVE_STORAGE = 'goldeoro_alineacion';
+// Cada categoría tiene su propia alineación
+const claveStorage = (categoriaId: number) => `goldeoro_alineacion_${categoriaId}`;
 
-export function cargarAlineacion(): Alineacion {
-  const guardada = localStorage.getItem(CLAVE_STORAGE);
-  return guardada ? JSON.parse(guardada) : ALINEACION_INICIAL;
+export function cargarAlineacion(categoriaId: number): Alineacion {
+  const guardada = localStorage.getItem(claveStorage(categoriaId));
+  return guardada ? JSON.parse(guardada) : alineacionInicial(categoriaId);
 }
 
-export function guardarAlineacion(alineacion: Alineacion) {
-  localStorage.setItem(CLAVE_STORAGE, JSON.stringify(alineacion));
+export function guardarAlineacion(categoriaId: number, alineacion: Alineacion) {
+  localStorage.setItem(claveStorage(categoriaId), JSON.stringify(alineacion));
 }

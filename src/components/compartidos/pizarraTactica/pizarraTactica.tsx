@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Cancha } from './Cancha';
+import { useCategoriasDelUsuario } from '../../../auth/useCategoriasDelUsuario';
+import { SelectorCategoria } from '../selectorCategoria/SelectorCategoria';
 import { buscarJugador, jugadoresDeCategoria } from '../../../datos/jugadores';
 import {
   FORMACIONES,
@@ -12,23 +14,32 @@ import './pizarraTactica.css';
 
 interface PizarraTacticaProps {
   editable?: boolean;          // true = profesor (arma la alineación), false = padres y jugadores (solo ver)
-  jugadorDestacadoId?: number; // id del jugador a resaltar (cuando haya login, vendrá del usuario)
+  jugadorDestacadoId?: number; // id del jugador a resaltar (el hijo del padre, o el propio jugador)
 }
 
 export function PizarraTactica({ editable = false, jugadorDestacadoId }: PizarraTacticaProps) {
-  const [alineacion, setAlineacion] = useState<Alineacion>(() => cargarAlineacion());
+  // Profesor: sus categorías. Padre y jugador: la del niño.
+  const categorias = useCategoriasDelUsuario();
+  const [categoriaId, setCategoriaId] = useState(() => categorias[0]?.id ?? 0);
+  const [alineacion, setAlineacion] = useState<Alineacion>(() => cargarAlineacion(categoriaId));
   const [idSeleccionado, setIdSeleccionado] = useState<number | null>(null);
 
   // Jugadores que NO están en la cancha
   const idsEnCancha = Object.values(alineacion.asignaciones);
-    // Por ahora, solo la Sub-12 (id 3). En el paso 7.3 la categoría la elegirá el profesor.
-  const banca = jugadoresDeCategoria(3).filter((jugador) => !idsEnCancha.includes(jugador.id));
+  const banca = jugadoresDeCategoria(categoriaId).filter((jugador) => !idsEnCancha.includes(jugador.id));
   const jugadorSeleccionado = idSeleccionado !== null ? buscarJugador(idSeleccionado) : undefined;
 
   // Guarda en el estado Y en localStorage al mismo tiempo
   const actualizarAlineacion = (nueva: Alineacion) => {
     setAlineacion(nueva);
-    guardarAlineacion(nueva);
+    guardarAlineacion(categoriaId, nueva);
+  };
+
+  // Al cambiar de categoría se carga la alineación de ESA categoría
+  const cambiarCategoria = (nuevaCategoriaId: number) => {
+    setCategoriaId(nuevaCategoriaId);
+    setAlineacion(cargarAlineacion(nuevaCategoriaId));
+    setIdSeleccionado(null); // El jugador seleccionado era de la otra categoría
   };
 
   const cambiarFormacion = (formacion: Formacion) => {
@@ -52,11 +63,21 @@ export function PizarraTactica({ editable = false, jugadorDestacadoId }: Pizarra
     actualizarAlineacion({ ...alineacion, asignaciones });
   };
 
+  // Va después de todos los hooks (la regla de los hooks)
+  if (categorias.length === 0) {
+    return <p className="text-center text-muted my-5">No tienes categorías asignadas.</p>;
+  }
+
   return (
     <div className="container my-4">
       <h2 className="text-center text-success fw-bold mb-2">
         {editable ? '⚽ Pizarra Táctica y Alineación' : '📋 Convocatoria y Formación Titular'}
       </h2>
+
+      {/* Selector de categoría (o el nombre, si solo hay una) */}
+      <div className="d-flex justify-content-center mb-3">
+        <SelectorCategoria categorias={categorias} categoriaId={categoriaId} onCambiar={cambiarCategoria} />
+      </div>
 
       {/* Profesor: elige formación. Los demás: solo la ven */}
       {editable ? (
