@@ -16,7 +16,7 @@ export interface Alumno {
 }
 
 interface CategoriasProp {
-    eliminarAlumno?: boolean;  
+    puedeEliminar?: boolean;  
 }
 
 // Convierte los jugadores de la fuente de datos al formato de esta pantalla
@@ -33,7 +33,7 @@ const alumnosIniciales: Alumno[] = JUGADORES.map((jugador) => ({
 
 
 
-const Categorias = ({ eliminarAlumno = false }: CategoriasProp) => {
+const Categorias = ({ puedeEliminar = false }: CategoriasProp) => {
     // 1. Las categorías vienen de la fuente de datos compartida
     const categorias = CATEGORIAS;
 
@@ -292,7 +292,7 @@ const Categorias = ({ eliminarAlumno = false }: CategoriasProp) => {
                                                                     ✏️ Editar datos
                                                                 </button>
                                                             </li>
-                                                            {eliminarAlumno &&
+                                                            {puedeEliminar &&
                                                             <>
                                                             <li><hr className="dropdown-divider" /></li>
                                                             <li> 
