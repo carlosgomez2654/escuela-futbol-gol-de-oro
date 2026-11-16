@@ -1,24 +1,33 @@
 import { useState } from 'react';
-import MenuProfesores from './components/menuProfesores/menuProfesores';
 import Categorias from '../compartidos/categorias/categorias';
-import { PizarraTactica } from '../compartidos/pizarraTactica/pizarraTactica';  // Ajusta la ruta según dónde hayas guardado el archivo
+import { PizarraTactica } from '../compartidos/pizarraTactica/pizarraTactica';
 import { Calendario } from '../compartidos/calendario/calendario';
-import './profesoresDashboard.css';
+import { MenuDashboard, type OpcionMenu } from '../compartidos/menuDashboard/MenuDashboard';
+
+type SeccionProfesor = 'categorias' | 'pizarra' | 'calendario';
+
+const opciones: OpcionMenu<SeccionProfesor>[] = [
+  { seccion: 'categorias', texto: '📁 Categorías' },
+  { seccion: 'pizarra', texto: '⚽ Posiciones' },
+  { seccion: 'calendario', texto: '📅 Calendario' },
+];
 
 const ProfesoresDashboard = () => {
-  // Estado para controlar qué sección está activa actualmente
-  const [activeSection, setActiveSection] = useState<string>('categorias');
+  const [seccionActiva, setSeccionActiva] = useState<SeccionProfesor>('categorias');
 
   return (
-    <div className="profesores-dashboard">
-      {/* Menú lateral de navegación */}
-      <MenuProfesores onSelectSection={setActiveSection} />
+    <div>
+      <MenuDashboard
+        titulo="Panel de Profesor"
+        opciones={opciones}
+        seccionActiva={seccionActiva}
+        onSeleccionar={setSeccionActiva}
+      />
 
-      {/* Área de contenido principal */}
-      <main className="dashboard-main">
-        {activeSection === 'categorias' && <Categorias />}
-        {activeSection === 'pizarraTactica' && <PizarraTactica editable={true} /> }
-        {activeSection === 'calendario' && <Calendario editable={true} />}
+      <main>
+        {seccionActiva === 'categorias' && <Categorias />}
+        {seccionActiva === 'pizarra' && <PizarraTactica editable />}
+        {seccionActiva === 'calendario' && <Calendario editable />}
       </main>
     </div>
   );

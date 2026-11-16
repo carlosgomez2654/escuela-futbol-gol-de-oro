@@ -1,28 +1,43 @@
 import { useState } from 'react';
-import AdminNav from './components/AdminNav/AdminNav';
-import './adminDashboard.css';
 import AdminHome from './components/home/adminHome';
-import type { AdminSection } from '../../Types/adminTypes';
 import AdminInscripciones from './components/inscripciones/adminInscripciones';
 import Categorias from '../compartidos/categorias/categorias';
 import AdminUsuarios from './components/usuarios/usuarios';
 import AdminPagos from './components/pagos/adminPagos';
+import { MenuDashboard, type OpcionMenu } from '../compartidos/menuDashboard/MenuDashboard';
+import type { AdminSection } from '../../Types/adminTypes';
+
+const opciones: OpcionMenu<AdminSection>[] = [
+  { seccion: 'home', texto: '📊 Resumen' },
+  { seccion: 'inscripciones', texto: '📥 Inscripciones' },
+  { seccion: 'categorias', texto: '📁 Categorías' },
+  { seccion: 'usuarios', texto: '👥 Usuarios' },
+  { seccion: 'pagos', texto: '💳 Pagos' },
+  { seccion: 'configuracion', texto: '⚙️ Configuración' },
+];
 
 const AdminDashboard = () => {
-    const [activeSection, setActiveSection] = useState<AdminSection>('home');
-    return (
-        <div className="admin-dashboard-container">
-            <AdminNav activeSection={activeSection} setActiveSection={setActiveSection} />
-            <main className="admin-main-content">
-                {activeSection === 'home' && <AdminHome />}
-                {activeSection === 'inscripciones' && <AdminInscripciones />}
-                {activeSection === 'categorias' && <Categorias />}
-                {activeSection === 'usuarios' && <AdminUsuarios />}
-                {activeSection === 'pagos' && <AdminPagos />}
-                {activeSection === 'configuracion' && <h1>Configuración</h1>}
-            </main>
-        </div>
-    );
+  const [seccionActiva, setSeccionActiva] = useState<AdminSection>('home');
+
+  return (
+    <div>
+      <MenuDashboard
+        titulo="Panel Admin"
+        opciones={opciones}
+        seccionActiva={seccionActiva}
+        onSeleccionar={setSeccionActiva}
+      />
+
+      <main>
+        {seccionActiva === 'home' && <AdminHome />}
+        {seccionActiva === 'inscripciones' && <AdminInscripciones />}
+        {seccionActiva === 'categorias' && <Categorias />}
+        {seccionActiva === 'usuarios' && <AdminUsuarios />}
+        {seccionActiva === 'pagos' && <AdminPagos />}
+        {seccionActiva === 'configuracion' && <h1>Configuración</h1>}
+      </main>
+    </div>
+  );
 };
 
 export default AdminDashboard;

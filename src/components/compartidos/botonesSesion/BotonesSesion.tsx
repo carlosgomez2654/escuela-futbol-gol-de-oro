@@ -8,14 +8,14 @@ export function BotonesSesion() {
 
   return (
     <div className="d-flex align-items-center gap-2 flex-wrap">
-      {usuario && <span className="small text-muted me-1">👤 {usuario.nombre}</span>}
+      {usuario && <span className="small text-muted text-nowrap me-1">👤 {usuario.nombre}</span>}
 
-      <Link to="/" className="btn btn-sm btn-outline-primary">
+      <Link to="/" className="btn btn-sm btn-outline-primary text-nowrap">
         🏠 Inicio
       </Link>
 
       {/* No hace falta navegar: al quedar sin sesión, RutaProtegida nos manda al login */}
-      <button type="button" className="btn btn-sm btn-outline-danger" onClick={cerrarSesion}>
+      <button type="button" className="btn btn-sm btn-outline-danger text-nowrap" onClick={cerrarSesion}>
         Cerrar sesión
       </button>
     </div>

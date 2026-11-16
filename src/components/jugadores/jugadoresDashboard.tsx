@@ -1,27 +1,32 @@
-import { useState } from "react";
-import { Calendario } from "../compartidos/calendario/calendario";
-import MenuJugadores from "./menuJugadores/menuJugadores";
-import { PizarraTactica } from "../compartidos/pizarraTactica/pizarraTactica"; 
-import { useAuth } from "../../auth/authContexto";
+import { useState } from 'react';
+import { Calendario } from '../compartidos/calendario/calendario';
+import { PizarraTactica } from '../compartidos/pizarraTactica/pizarraTactica';
+import { MenuDashboard, type OpcionMenu } from '../compartidos/menuDashboard/MenuDashboard';
+import { useAuth } from '../../auth/authContexto';
 
-import "./jugadoresDashboard.css";
+type SeccionJugador = 'calendario' | 'pizarra';
+
+const opciones: OpcionMenu<SeccionJugador>[] = [
+  { seccion: 'calendario', texto: '📅 Calendario' },
+  { seccion: 'pizarra', texto: '⚽ Posiciones' },
+];
 
 const JugadoresDashboard = () => {
-  // Estado para controlar qué sección está activa actualmente
   const { usuario } = useAuth();
-  const [activeSection, setActiveSection] = useState<string>(
-    "CalendarioJugadores",
-  );
+  const [seccionActiva, setSeccionActiva] = useState<SeccionJugador>('calendario');
 
   return (
-    <div className="Jugadores-dashboard">
-      {/* Menú lateral de navegación */}
-      <MenuJugadores onSelectSection={setActiveSection} />
+    <div>
+      <MenuDashboard
+        titulo="Panel de Jugador"
+        opciones={opciones}
+        seccionActiva={seccionActiva}
+        onSeleccionar={setSeccionActiva}
+      />
 
-      {/* Área de contenido principal */}
-      <main className="dashboard-main">
-        {activeSection === "CalendarioJugadores" && <Calendario />}
-        {activeSection === "pizarraTactica" && <PizarraTactica jugadorDestacadoId={usuario?.jugadorId} />}
+      <main>
+        {seccionActiva === 'calendario' && <Calendario />}
+        {seccionActiva === 'pizarra' && <PizarraTactica jugadorDestacadoId={usuario?.jugadorId} />}
       </main>
     </div>
   );
