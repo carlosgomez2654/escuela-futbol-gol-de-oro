@@ -15,7 +15,7 @@ export interface Alumno {
     categoria: string; // Nombre de la categoría (ej: "Sub-12")
 }
 
-interface CategoriaProp {
+interface CategoriasProp {
     eliminarAlumno?: boolean;  
 }
 
@@ -33,7 +33,7 @@ const alumnosIniciales: Alumno[] = JUGADORES.map((jugador) => ({
 
 
 
-const Categorias = ({ eliminarAlumno = false }: CategoriaProp) => {
+const Categorias = ({ eliminarAlumno = false }: CategoriasProp) => {
     // 1. Las categorías vienen de la fuente de datos compartida
     const categorias = CATEGORIAS;
 
@@ -292,15 +292,18 @@ const Categorias = ({ eliminarAlumno = false }: CategoriaProp) => {
                                                                     ✏️ Editar datos
                                                                 </button>
                                                             </li>
+                                                            {eliminarAlumno &&
+                                                            <>
                                                             <li><hr className="dropdown-divider" /></li>
-                                                            <li> {eliminarAlumno ?
+                                                            <li> 
                                                                 <button 
                                                                     className="dropdown-item text-danger fw-semibold"
                                                                     onClick={() => handleEliminarAlumno(alumno.id)}
                                                                 >
                                                                     🗑️ Eliminar de la lista
-                                                                </button> : '' }
+                                                                </button> 
                                                             </li>
+                                                            </>}
                                                         </ul>
                                                     </div>
                                                 )}
