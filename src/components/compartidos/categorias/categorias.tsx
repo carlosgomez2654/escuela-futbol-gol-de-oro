@@ -15,6 +15,10 @@ export interface Alumno {
     categoria: string; // Nombre de la categoría (ej: "Sub-12")
 }
 
+interface CategoriaProp {
+    eliminarAlumno?: boolean;  
+}
+
 // Convierte los jugadores de la fuente de datos al formato de esta pantalla
 const alumnosIniciales: Alumno[] = JUGADORES.map((jugador) => ({
     id: jugador.id,
@@ -27,7 +31,9 @@ const alumnosIniciales: Alumno[] = JUGADORES.map((jugador) => ({
     categoria: buscarCategoria(jugador.categoriaId)?.nombre ?? '',
 }));
 
-const Categorias = () => {
+
+
+const Categorias = ({ eliminarAlumno = false }: CategoriaProp) => {
     // 1. Las categorías vienen de la fuente de datos compartida
     const categorias = CATEGORIAS;
 
@@ -287,13 +293,13 @@ const Categorias = () => {
                                                                 </button>
                                                             </li>
                                                             <li><hr className="dropdown-divider" /></li>
-                                                            <li>
+                                                            <li> {eliminarAlumno ?
                                                                 <button 
                                                                     className="dropdown-item text-danger fw-semibold"
                                                                     onClick={() => handleEliminarAlumno(alumno.id)}
                                                                 >
                                                                     🗑️ Eliminar de la lista
-                                                                </button>
+                                                                </button> : '' }
                                                             </li>
                                                         </ul>
                                                     </div>

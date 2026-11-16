@@ -31,7 +31,7 @@ const AdminDashboard = () => {
       <main>
         {seccionActiva === 'home' && <AdminHome />}
         {seccionActiva === 'inscripciones' && <AdminInscripciones />}
-        {seccionActiva === 'categorias' && <Categorias />}
+        {seccionActiva === 'categorias' && <Categorias  eliminarAlumno={true}/>}
         {seccionActiva === 'usuarios' && <AdminUsuarios />}
         {seccionActiva === 'pagos' && <AdminPagos />}
         {seccionActiva === 'configuracion' && <h1>Configuración</h1>}
