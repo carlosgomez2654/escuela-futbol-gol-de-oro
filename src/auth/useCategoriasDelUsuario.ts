@@ -5,6 +5,7 @@ import { buscarJugador } from '../datos/jugadores';
 // Devuelve las categorías que le corresponden al usuario que inició sesión:
 // - Admin: todas
 // - Profesor: las que entrena
+
 // - Padre y jugador: la categoría del niño
 export function useCategoriasDelUsuario(): Categoria[] {
   const { usuario } = useAuth();
